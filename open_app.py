@@ -2,7 +2,7 @@ import pyautogui
 import time
 from speech_recognizer import listen
 from speak import speak
-from gemini_aura_ai import gemini
+from groq import gemini
 
 def OpenApp():
     speak("What App do you want to open?")

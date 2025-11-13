@@ -1,7 +1,6 @@
 import time
 import pygame
 import sys
-from gemini_aura_ai import gemini
 from speech_recognizer import listen
 from speak import speak
 from web_module import open_youtube, open_x, open_gmail, open_github , open_google, open_instagram, open_facebook, open_linkedin
@@ -12,16 +11,6 @@ from open_app import OpenApp
 from screen_brightness import set_screen_brightness
 from openai import OpenAI
 import os
-client = OpenAI(
-    api_key=os.environ.get("GROQ_API_KEY"),
-    base_url="https://api.groq.com/openai/v1",
-)
-
-response = client.responses.create(
-    input="Explain the importance of fast language models",
-    model="openai/gpt-oss-20b",
-)
-print(response.output_text)
 init()
 
 #For alarm Clock
@@ -30,13 +19,13 @@ def alarm() :
     pygame.mixer.music.load(r"E:\\MegaProject\\iphone_alarm.mp3")
     pygame.mixer.music.play(loops=-1)
 
-#For Time and Greating 
+#For Time and Greating
 def time_greating() :
     timestamp = time.strftime("%H:%M:%S")
     # Get the current time
-    
+
     print("Current Time:", timestamp)
-    
+
     if "05:00:00" <= timestamp < "12:00:00":
         speak("Good morning sir")
         print("Good Morning Sir")
@@ -58,7 +47,17 @@ def anim(text, delay=0.07):
         sys.stdout.flush()
         time.sleep(delay)
     print()
+def groq():
+    client = OpenAI(
+        api_key=os.environ.get("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"),
+        base_url="https://api.groq.com/openai/v1",
+    )
 
+    response = client.responses.create(
+        input="Explain the importance of fast language models",
+         model="openai/gpt-oss-20b",
+    )
+    print(response.output_text)
 #Main Command Processing Function
 def processcommand():
     while True:
