@@ -47,17 +47,7 @@ def anim(text, delay=0.07):
         sys.stdout.flush()
         time.sleep(delay)
     print()
-def groq():
-    client = OpenAI(
-        api_key=os.environ.get("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"),
-        base_url="https://api.groq.com/openai/v1",
-    )
 
-    response = client.responses.create(
-        input="Explain the importance of fast language models",
-         model="openai/gpt-oss-20b",
-    )
-    print(response.output_text)
 #Main Command Processing Function
 def processcommand():
     while True:
