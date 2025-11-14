@@ -1,14 +1,15 @@
 import pyautogui
 import time
-from speech_recognizer import listen
+import config
 from speak import speak
 
 
-def OpenApp():
-    speak("What App do you want to open?")
-    software = listen() #open {software}
 
-    app = software.split(" ")
+def OpenApp():
+    # speak("What App do you want to open?")
+    # software = listen() #open {software}
+
+    app = config.command.split(" ")
 
     # OpenAI(software)
     speak(f"Your App is Opening")

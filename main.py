@@ -1,6 +1,7 @@
 import time
 import pygame
 import sys
+import config
 from speech_recognizer import listen
 from speak import speak
 from web_module import open_youtube, open_x, open_gmail, open_github , open_google, open_instagram, open_facebook, open_linkedin
@@ -9,6 +10,7 @@ from battery_percentage import battery_percentage
 from colorama import Fore ,init
 from open_app import OpenApp
 from screen_brightness import set_screen_brightness
+
 
 init()
 
@@ -27,16 +29,12 @@ def time_greating() :
 
     if "05:00:00" <= timestamp < "12:00:00":
         speak("Good morning sir")
-        print("Good Morning Sir")
     elif "12:00:00" <= timestamp < "17:00:00":
         speak("Good Afternoon Sir")
-        print("Good Afternoon Sir")
     elif "17:00:00" <= timestamp < "21:00:00":
         speak("Good Evening Sir")
-        print("Good Evening Sir")
     else:
         speak("Good Night Sir")
-        print("Good Night Sir")
 
 #For Animation
 def anim(text, delay=0.07):
@@ -50,7 +48,8 @@ def anim(text, delay=0.07):
 #Main Command Processing Function
 def processcommand():
     while True:
-        command = listen()
+        config.command = listen()
+        close_aura = ["shutdown", "shut down", "close", "switch off", "switchoff"]
         TASKS = {
             "open youtube" : open_youtube,
             "open x" : open_x,
@@ -63,16 +62,21 @@ def processcommand():
             "weather" : lambda : weather(),
             "battery" : lambda : battery_percentage(),
             "set brightness" : lambda : set_screen_brightness(),
-            "open app": lambda : OpenApp()
+            "open": lambda : OpenApp()
+
         }
         # check if command matches any task
         found = False
         for key, action in TASKS.items():
-            if key in command.lower():
+            if key in config.command.lower():
                 action() # run the matched function
                 # gemini(command)
                 found = True
                 break
+
+        if found:
+            print("if you want to shutdown than say \"Shutdown Aura\", And if you want to continue say \"Hello aura\"")
+            break
 
         if not found:
             print("Task not found")
@@ -90,12 +94,10 @@ if __name__ == "__main__":
             time.sleep(0.05)
             anim(Fore.MAGENTA + "Aura Initialised Succesfully....")
             time.sleep(0.05)
-            anim(Fore.MAGENTA + "Hello Sir, How can i helped you?")
-            speak("Hello Sir, How can i helped you?")
-            time.sleep(0.05)
+            time_greating()
+            speak("Hello Sir How Can I help You?")
             print("Aura is Listening...")
-            time_great = time_greating
-            gemini(time_great)
+
             processcommand()
         elif command == "shutdown" or command == "shut down":
             speak("Aura Succesfully Shutting Down....")

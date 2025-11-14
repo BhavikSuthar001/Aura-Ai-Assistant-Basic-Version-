@@ -1,4 +1,6 @@
 import speech_recognition as sr
+from speech_recognition import WaitTimeoutError
+
 
 def listen():
     recognizer = sr.Recognizer()
@@ -15,3 +17,9 @@ def listen():
             return "Sorry, I could not understand."
         except sr.RequestError:
             return "Sorry, there was a connection issue."
+        except WaitTimeoutError :
+            return "Sorry, Error Occured"
+
+if __name__ == "__main__" :
+    a = listen()
+    print(a)
