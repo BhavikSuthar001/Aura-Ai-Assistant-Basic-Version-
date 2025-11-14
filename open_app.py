@@ -2,7 +2,7 @@ import pyautogui
 import time
 from speech_recognizer import listen
 from speak import speak
-from groq import gemini
+
 
 def OpenApp():
     speak("What App do you want to open?")
@@ -10,7 +10,8 @@ def OpenApp():
 
     app = software.split(" ")
 
-    gemini(software)
+    # OpenAI(software)
+    speak(f"Your App is Opening")
     pyautogui.click(630 , 1049)
     time.sleep(0.5)
     pyautogui.write(f"{app[-1]}", interval=0.5)

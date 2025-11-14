@@ -9,8 +9,7 @@ from battery_percentage import battery_percentage
 from colorama import Fore ,init
 from open_app import OpenApp
 from screen_brightness import set_screen_brightness
-from openai import OpenAI
-import os
+
 init()
 
 #For alarm Clock
