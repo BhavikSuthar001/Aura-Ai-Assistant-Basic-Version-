@@ -20,7 +20,7 @@ def alarm() :
     pygame.mixer.music.load(r"E:\\MegaProject\\iphone_alarm.mp3")
     pygame.mixer.music.play(loops=-1)
 
-#For Time and Greating
+#For Time and greating
 def time_greating() :
     timestamp = time.strftime("%H:%M:%S")
     # Get the current time
@@ -49,8 +49,8 @@ def anim(text, delay=0.07):
 def processcommand():
     while True:
         config.command = listen()
-        close_aura = ["shutdown", "shut down", "close", "switch off", "switchoff"]
-        TASKS = {
+
+        tasks = {
             "open youtube" : open_youtube,
             "open x" : open_x,
             "open gmail" : open_gmail,
@@ -67,7 +67,7 @@ def processcommand():
         }
         # check if command matches any task
         found = False
-        for key, action in TASKS.items():
+        for key, action in tasks.items():
             if key in config.command.lower():
                 action() # run the matched function
                 # gemini(command)
