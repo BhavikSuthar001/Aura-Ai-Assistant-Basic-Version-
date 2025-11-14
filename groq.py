@@ -1,7 +1,7 @@
 from openai import OpenAI
 import os
 client = OpenAI(
-    api_key=os.environ.get("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"),
+    api_key=os.environ.get("API_KEY"),
     base_url="https://api.groq.com/openai/v1",
 )
 
